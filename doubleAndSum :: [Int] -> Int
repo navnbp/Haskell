@@ -1,0 +1,12 @@
+	doubleAndSum :: [Int] -> Int
+	doubleAndSum = fst . 
+	               foldr (\i (acc, even) -> (acc + nextStep even i, not even)) (0, False)
+	   where 
+	     nextStep even i
+	      | even      = (uncurry (+) . (`divMod` 10) . (*2)) i
+	      | otherwise = i 
+	myLuhn :: Int -> Bool
+	myLuhn = (0 ==) . (`mod` 10) . doubleAndSum . (map (read . (: ""))) . show
+	testCC :: [Bool]
+	testCC = map myLuhn [49927398716, 49927398717, 1234567812345678, 1234567812345670]
+	-- => [True, False, False, True]
