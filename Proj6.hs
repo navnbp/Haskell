@@ -19,3 +19,4 @@ mydot f g = \x -> f (g x)
 myflip ::  (a -> b -> c) -> (b -> a -> c)
 myflip f x y= f y x
 
+-- [34 35] --> [35,34]
